@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Images</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .user-images-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .user-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5%;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .user-image:hover {
+    transform: scale(1.1);
+  }
+</style>
+</head>
+<body>
+
+<div id="user-images-container"></div>
+
+<script>
+  // Sample JSON data containing user images
+  var users = [
+    { "name": "User 1", "image": "https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=1024x1024&w=is&k=20&c=3IFYpgorUA9326qw3vLib5M-4jEobA_ck3Wromjyyb0=" },
+    { "name": "User 2", "image": "https://media.istockphoto.com/id/1529820791/photo/asian-multi-ethnic-business-people-talk-during-a-coffee-break-in-seminar-business-conference.jpg?s=1024x1024&w=is&k=20&c=A8X3saa2zQiJQjcCJCYKwYEuLDovjO0J7WDwnGwAlVw=" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/1659438/pexels-photo-1659438.jpeg" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/326212/pexels-photo-326212.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/133472/pexels-photo-133472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/39574/flower-exotic-colorful-pink-39574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/1887624/pexels-photo-1887624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/53184/peacock-bird-plumage-color-53184.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/1379636/pexels-photo-1379636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/884788/pexels-photo-884788.jpeg" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/1089855/pexels-photo-1089855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/302820/pexels-photo-302820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/247597/pexels-photo-247597.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/62640/pexels-photo-62640.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/931007/pexels-photo-931007.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.pexels.com/photos/133081/pexels-photo-133081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { "name": "User 3", "image": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?q=80&w=1530&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { "name": "User 3", "image": "https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { "name": "User 3", "image": "https://images.unsplash.com/photo-1546019170-f1f6e46039f5?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { "name": "User 3", "image": "https://images.unsplash.com/photo-1530695440407-21fef47230b1?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { "name": "User 3", "image": "https://plus.unsplash.com/premium_photo-1682965699797-a2bd37f62b45?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { "name": "User 3", "image": "https://images.unsplash.com/photo-1529397938791-2aba4681454f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGh1bWFufGVufDB8fDB8fHww" },
+  ];
+
+  // Function to load user images from JSON
+  function loadUserImages() {
+    var container = document.getElementById('user-images-container');
+
+    users.forEach(function(user) {
+      var img = document.createElement('img');
+      img.src = user.image;
+      img.alt = user.name + ' image';
+      img.className = 'user-image';
+
+      container.appendChild(img);
+    });
+  }
+
+  // Call the function to load user images
+  loadUserImages();
+</script>
+
+</body>
+</html>
